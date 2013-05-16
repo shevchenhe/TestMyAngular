@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html   lang="en" ng-app="myAngularRate">
+<head>
+  <title>TestGeometry</title>
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="styles/app.css">
+    <link rel="stylesheet" href="http://servicesbeta.esri.com/jsapi/arcgis/3.4/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://servicesbeta.esri.com/jsapi/arcgis/3.4/js/esri/css/esri.css">
+    <script src="http://servicesbeta.esri.com/jsapi/arcgis/3.4/"></script>
+  <script type="text/javascript" src="scripts/vendor/jquery.js"></script>
+  <script src="scripts/vendor/angular.min.js"></script>
+  <script src="scripts/vendor/angular-resource.min.js"></script>
+  <script src="scripts/vendor/bootstrap.js"></script>
+  <script src="scripts/services/services.js"></script>
+  <script src="scripts/controllers/controllers.js"></script>
+  <script type="text/javascript" src="scripts/app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>汇率</h1>
+  </header>
+
+
+  <div class="container-fluid" ng-controller="rateTable">
+    <div class="row-fluid">
+      <div class="span2" style="height:800px;overflow:auto">
+        <table class="table table-bordered table-hover table-condensed text-center">
+          <tbody><tr><td colspan="2">{{rateDate*1000|date:'yyyy-MM-dd HH:mm'}}美元对其他货币汇率</td></tr><tr ng-repeat="rate in rates" ng-click="setCurrency($index,1)"><td>{{rate.name}}</td><td>{{rate.nowrate|number:4}}</td></tr></tbody>
+        </table>
+
+      </div>
+      <div class="span10">
+
+        <div class="input-prepend">          
+
+          <div class="btn-group">
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+              Choose Currency
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="rate in rates"><a href="#" ng-click="setCurrency($index,1)">{{rate.name}}</a></li>
+            </ul>
+            
+          </div>
+          <span class="add-on">{{inputCurrency}}</span>
+          <input class="span3" id="cyn" ng-model="inputMoney" type="text">
+        </div>
+
+
+        <div class="input-prepend">      
+          <div class="btn-group"> 
+            <button class="btn dropdown-toggle" data-toggle="dropdown">
+              Choose Currency
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="rate in rates"><a href="#" ng-click="setCurrency($index,0)">{{rate.name}}</a></li>
+            </ul>
+          </div>      
+          <span class="add-on">{{outputCurrency}}</span>      
+          <input class="span4" id="cyn" ng-model="outputMoney"  type="text">
+        </div>
+        <div id="mapDiv" style="height:800px"></div>
+
+
+
+        <!--<span>{{cnyamount}}</span>-->
+      </div>
+    </div>
+  </div>
+</body>
+</html>
