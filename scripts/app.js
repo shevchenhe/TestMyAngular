@@ -1,7 +1,8 @@
 require(["esri/map", "esri/geometry/Extent", "esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/FeatureLayer", "esri/tasks/query", "esri/layers/GraphicsLayer",
-	"esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/config",
-	"dojo/_base/Color", "dojo/dom", "dojo/on", "my/changeLabel", "dojo/domReady!"], function(Map, Extent, ArcGISTiledMapServiceLayer, FeatureLayer, Query, GraphicsLayer, SimpleFillSymbol,
-SimpleLineSymbol, config, Color, dom, on, changeLabel) {
+		"esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/config",
+		"dojo/_base/Color", "dojo/dom", "dojo/on", "my/changeLabel", "dojo/domReady!"
+], function(Map, Extent, ArcGISTiledMapServiceLayer, FeatureLayer, Query, GraphicsLayer, SimpleFillSymbol,
+	SimpleLineSymbol, config, Color, dom, on, changeLabel) {
 	config.defaults.io.proxyUrl = "http://127.0.0.1:8081/proxy.php"
 	config.defaults.io.alwaysUseProxy = true;
 	var initExtent = new Extent({
@@ -25,41 +26,32 @@ SimpleLineSymbol, config, Color, dom, on, changeLabel) {
 	});
 	window.inputCurrencyCountry = new GraphicsLayer();
 	window.outputCurrencyCountry = new GraphicsLayer();
-	map.addLayers([inputCurrencyCountry, outputCurrencyCountry])
-	//var fromCountry = null;
-	//var toCountry = null;
+	map.addLayers([inputCurrencyCountry, outputCurrencyCountry]);
 	var initQuery_1 = new Query();
 	var initQuery_2 = new Query();
 	var query = new Query();
 	var symbolFrom = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0, 255, 0]), 1), new dojo.Color([0, 255, 0, 0.25]));
 	var symbolTo = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 0, 0]), 1), new dojo.Color([255, 0, 0, 0.25]));
+
+	//下面一行代码通过dom节点来获取节点的作用域活父作用域，该作用域是就是controller中声明的$scope
+
 	var theScope = angular.element(dom.byId('inputMoney')).scope();
 	initQuery_1.where = "CurrencyCode='CNY'";
 	initQuery_2.where = "CurrencyCode='USD'";
 	countriesLayer.selectFeatures(initQuery_1, FeatureLayer.SELECTION_NEW, function(results) {
-		var length=results.length;
+		var length = results.length;
 		if (length) {
 			for (var i = 0; i < length; i++) {
-			window.outputCurrencyCountry.add(results[i].setSymbol(symbolTo));
-		}
-
-			//fromCountry = 1;
-			//theScope.inputCurrency = results[0].attributes.CurrencyCode;
-			//theScope.$digest();
-			//theScope.$apply('changeCurrency()')
-
+				window.outputCurrencyCountry.add(results[i].setSymbol(symbolTo));
+			}
 		}
 	});
 	countriesLayer.selectFeatures(initQuery_2, FeatureLayer.SELECTION_NEW, function(results) {
-		var length=results.length;
+		var length = results.length;
 		if (length) {
 			for (var i = 0; i < length; i++) {
 				window.inputCurrencyCountry.add(results[i].setSymbol(symbolFrom));
 			}
-			//toCountry = 1;
-			//theScope.outputCurrency = results[0].attributes.CurrencyCode;
-			//theScope.$digest();
-			//theScope.$apply('changeCurrency()');
 
 		}
 	});
@@ -73,10 +65,8 @@ SimpleLineSymbol, config, Color, dom, on, changeLabel) {
 					window.inputCurrencyCountry.add(results[0].setSymbol(symbolFrom));
 					window.inputCurrencyCountry.refresh();
 					window.outputCurrencyCountry.refresh();
-
-					//fromCountry = 1;
+					//获取到作用域后通过作用域来改变controller中的model值。
 					theScope.inputCurrency = results[0].attributes.CurrencyCode;
-					//theScope.$digest();
 					theScope.$apply('changeCurrency()')
 
 				}
@@ -88,9 +78,8 @@ SimpleLineSymbol, config, Color, dom, on, changeLabel) {
 					window.outputCurrencyCountry.add(results[0].setSymbol(symbolTo));
 					window.inputCurrencyCountry.refresh();
 					window.outputCurrencyCountry.refresh();
-					//toCountry = 1;
+
 					theScope.outputCurrency = results[0].attributes.CurrencyCode;
-					//theScope.$digest();
 					theScope.$apply('changeCurrency()');
 
 				}
@@ -100,6 +89,5 @@ SimpleLineSymbol, config, Color, dom, on, changeLabel) {
 
 	})
 
-	//window.map.addLayer(countriesLayer);
 
 })

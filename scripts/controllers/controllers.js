@@ -1,11 +1,19 @@
-'use strict';
 
+'use strict';
+/*
+这个地方先建立一个angular的模块，第一个参数是模块名称，第二个是依赖。
+ */
 var app = angular.module('myAngularRate', ['angular.rateService']);
 
-
+/*
+这里，声明一个controller，名字为rateTable，第二个参数为该controller的构造函数。这个地方就用到了AngularJS中依赖注入。
+ */
 app.controller('rateTable',
 
 function($scope, $filter, rateEngine,currencyName) {
+	/*
+	这些就是controller作用域中的model，也就是数据。
+	 */
 	$scope.rates = [];
 	$scope.inputMoney = 1000;
 	$scope.outputMoney = "";
@@ -17,6 +25,9 @@ function($scope, $filter, rateEngine,currencyName) {
 	$scope.ratesObject = {};
 	$scope.fromCurrencyCheck=false;
 	$scope.toCurrencyCheck=true;
+	/*
+	调用rateService模块中的rateEngine这个服务，来获取汇率信息，并将获取到的信息赋值给controller中声明的变量。
+	 */
 	rateEngine.get({
 		app_id: "6957c070c395430a812077a511c5541a"
 	}, function(result) {
@@ -42,11 +53,12 @@ function($scope, $filter, rateEngine,currencyName) {
 					this[index]['fullname']=namevalue;
 				}
 			},$scope.rates)
-
 		});
 	});
-
 	});
+	/*
+	recal函数的主要功能就是在输入货币、输出货币、输入金额变的情况下，重新计算结果
+	 */
 	var recal = function() {
 		//$scope.inputCurrencyRate = $scope.ratesObject[$scope.inputCurrency].nowrate;
 		//$scope.outputCurrencyRate = $scope.ratesObject[$scope.outputCurrency].nowrate;
@@ -75,6 +87,9 @@ function($scope, $filter, rateEngine,currencyName) {
 		$scope.inputCurrencyRate = $scope.ratesObject[$scope.inputCurrency].nowrate;
 		$scope.outputCurrencyRate = $scope.ratesObject[$scope.outputCurrency].nowrate;
 	}
+	/*
+	$scope.$watch的作用是监测controller作用域中的model的变化情况，如果有变化，就会出发相应的函数。
+	 */
 	$scope.$watch('inputCurrency', recal);
 	$scope.$watch('outputCurrency', recal);
 	$scope.$watch('inputMoney', recal);
