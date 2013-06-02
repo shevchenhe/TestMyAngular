@@ -10,3 +10,8 @@
 4. 此Demo的底图是ArcGIS Online上提供的底图[World_Light_Gray_Base](http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer)
 5. 此Demo演示的时候为了保证演示效果，将上述所用到的地图服务都做成了本地服务，因此在Clone本Demo后需要对服务的地址进行相应的修改。
 
+----
+
+##克隆版本库
+	$ git clone git://github.com/shevchenhe/TestMyAngular.git
+
