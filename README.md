@@ -15,7 +15,7 @@
 ##帮助资源
 * [ArcGIS for JavaScript API Resource Center](http://help.arcgis.com/en/webapi/javascript/arcgis/index.html)
 * [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
-* [微博@ArcGIS技术服务](weibo.com/esritech) 
+* [微博@ArcGIS技术服务](http://weibo.com/esritech) 
 
 ##克隆版本库
     $ git clone git://github.com/shevchenhe/TestMyAngular.git
