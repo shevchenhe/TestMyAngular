@@ -5,7 +5,7 @@
 
 ## 说明
 1. 此Demo所展示行政区划是以货币为准，不带有任何政治色彩
-2. 此Demo中的汇率来源于[openexchangerates](http://openexchangerates.org)
+2. 此Demo中的汇率可以实时获取，数据来源为[openexchangerates](http://openexchangerates.org)
 3. 此Demo中的国家区划数据来源于[Naturalearthdata](http://www.naturalearthdata.com/downloads/110m-cultural-vectors)
 4. 此Demo的底图是ArcGIS Online上提供的底图[World_Light_Gray_Base](http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer)
 5. 此Demo演示的时候为了保证演示效果，将上述所用到的地图服务都做成了本地服务，因此在Clone本Demo后需要对服务的地址进行相应的修改。
