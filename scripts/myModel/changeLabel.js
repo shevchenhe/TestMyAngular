@@ -12,8 +12,8 @@ define(["esri/layers/FeatureLayer", "esri/tasks/query",
 		var fromCountry = null;
 		var toCountry = null;
 		var query = new Query();
-		var symbolFrom = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0, 255, 0]), 1), new dojo.Color([0, 255, 0, 0.25]));
-		var symbolTo = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new dojo.Color([255, 0, 0]), 1), new dojo.Color([255, 0, 0, 0.25]));
+		var symbolFrom = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([0, 255, 0]), 1), new Color([0, 255, 0, 0.25]));
+		var symbolTo = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([255, 0, 0]), 1), new Color([255, 0, 0, 0.25]));
 		query.where = "CurrencyCode='" + newCountryCode + "'";
 		if (flag) {
 			inputLayer.clear();
