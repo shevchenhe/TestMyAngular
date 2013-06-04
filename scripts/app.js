@@ -1,8 +1,8 @@
 require(["esri/map", "esri/geometry/Extent", "esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/FeatureLayer", "esri/tasks/query", "esri/layers/GraphicsLayer",
 		"esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/config",
-		"dojo/_base/Color", "dojo/dom", "dojo/on", "my/changeLabel", "dojo/domReady!"
+		"dojo/_base/Color", "dojo/dom", "dojo/on","dojo/_base/connect", "my/changeLabel", "dojo/domReady!"
 ], function(Map, Extent, ArcGISTiledMapServiceLayer, FeatureLayer, Query, GraphicsLayer, SimpleFillSymbol,
-	SimpleLineSymbol, config, Color, dom, on, changeLabel) {
+	SimpleLineSymbol, config, Color, dom, on, connect,changeLabel) {
 	config.defaults.io.proxyUrl = "http://127.0.0.1:8081/proxy.php"
 	config.defaults.io.alwaysUseProxy = true;
 	var initExtent = new Extent({
@@ -55,7 +55,7 @@ require(["esri/map", "esri/geometry/Extent", "esri/layers/ArcGISTiledMapServiceL
 
 		}
 	});
-	on(map, "click", function(evt) {
+	connect.connect(map, "onClick", function(evt) {
 		query.geometry = evt.mapPoint;
 		query.spatialRelationship = Query.SPATIAL_REL_INTERSECTS;
 		if ($('#fromCurrencyCheck').bootstrapSwitch('status')) {
