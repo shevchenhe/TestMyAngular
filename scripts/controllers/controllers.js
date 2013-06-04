@@ -64,6 +64,9 @@ function($scope, $filter, rateEngine,currencyName) {
 		//$scope.outputCurrencyRate = $scope.ratesObject[$scope.outputCurrency].nowrate;
 		$scope.outputMoney = $filter("number")($scope.inputMoney * $scope.outputCurrencyRate / $scope.inputCurrencyRate, 4);
 	};
+	/*
+	setCurrency函数会改变scope中一些模型的之，而且改函数还负责与地图进行交互。与地图进行交互的模块是利用Dojo写的changeLabel。
+	 */
 	$scope.setCurrency = function(index) {
 		$scope.fromCurrencyCheck=$('#fromCurrencyCheck').bootstrapSwitch('status');
 		$scope.toCurrencyCheck=$('#toCurrencyCheck').bootstrapSwitch('status');
@@ -71,6 +74,7 @@ function($scope, $filter, rateEngine,currencyName) {
 			$scope.inputCurrency = $scope.rates[index].name;
 			$scope.inputCurrencyRate = $scope.rates[index].nowrate;
 			var newcurrencycode=$scope.inputCurrency;
+			//与地图交互，改变地图的graphic
 			require(["my/changeLabel"],function(changeLabel){
 				changeLabel(window.inputCurrencyCountry,window.outputCurrencyCountry,newcurrencycode,1)
 			})
@@ -88,7 +92,7 @@ function($scope, $filter, rateEngine,currencyName) {
 		$scope.outputCurrencyRate = $scope.ratesObject[$scope.outputCurrency].nowrate;
 	}
 	/*
-	$scope.$watch的作用是监测controller作用域中的model的变化情况，如果有变化，就会出发相应的函数。
+	$scope.$watch的作用是监测controller作用域中的model的变化情况，如果有变化，就会出发相应的函数。该函数十分使用。
 	 */
 	$scope.$watch('inputCurrency', recal);
 	$scope.$watch('outputCurrency', recal);

@@ -67,6 +67,7 @@ require(["esri/map", "esri/geometry/Extent", "esri/layers/ArcGISTiledMapServiceL
 					window.outputCurrencyCountry.refresh();
 					//获取到作用域后通过作用域来改变controller中的model值。
 					theScope.inputCurrency = results[0].attributes.CurrencyCode;
+					theScope.query=results[0].attributes.CurrencyCode;
 					theScope.$apply('changeCurrency()')
 
 				}
@@ -78,7 +79,7 @@ require(["esri/map", "esri/geometry/Extent", "esri/layers/ArcGISTiledMapServiceL
 					window.outputCurrencyCountry.add(results[0].setSymbol(symbolTo));
 					window.inputCurrencyCountry.refresh();
 					window.outputCurrencyCountry.refresh();
-
+					theScope.query=results[0].attributes.CurrencyCode;
 					theScope.outputCurrency = results[0].attributes.CurrencyCode;
 					theScope.$apply('changeCurrency()');
 
