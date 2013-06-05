@@ -45,24 +45,25 @@ margin-bottom: 20px;
 				<input type="text" class="input-medium search-query" ng-model='query' placeholder="查询货币代码">
 			</form>
 			<table class="table table-bordered table-hover table-condensed text-center">
-				<tbody><tr><td colspan="2">{{rateDate*1000|date:'yyyy-MM-dd HH:mm'}}美元对其他货币汇率</td></tr><tr ng-repeat="rate in rates|filter:query" ng-click="setCurrency($index)"><td>{{rate.name}}{{rate.fullname}}</td><td>{{rate.nowrate|number:4}}</td></tr></tbody>
+				<tbody><tr><td colspan="2">{{rateDate*1000|date:'yyyy-MM-dd HH:mm'}}美元对其他货币汇率</td></tr>
+					<tr ng-repeat="rate in rates|filter:query" ng-click="setCurrency($index)">
+						<td>{{rate.name}}:{{rate.fullname}}</td>
+						<td>{{rate.nowrate|number:4}}</td>
+					</tr>
+				</tbody>
 			</table>
 
 		</div>
 		<div class="span8">
 
-			<div class="input-prepend">          
-
-				
+			<div class="input-prepend">
 					<span class="add-on">可否选择</span> 
 					<div class="switch" id="fromCurrencyCheck" >
 						<input  type="checkbox" checked />
 					</div>
-
 				<span class="add-on">{{inputCurrency}}</span>
 				<input class="span3" id="inputMoney" ng-model="inputMoney" type="text">
 			</div>
-
 
 			<div class="input-prepend">       
 					<span class="add-on">可否选择</span>  
@@ -74,9 +75,6 @@ margin-bottom: 20px;
 			</div>
 			<div id="mapDiv" style="height:800px"></div>
 
-
-
-			<!--<span>{{cnyamount}}</span>-->
 		</div>
 	</div>
 </div>

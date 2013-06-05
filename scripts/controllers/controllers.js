@@ -26,7 +26,7 @@ function($scope, $filter, rateEngine,currencyName) {
 	$scope.fromCurrencyCheck=false;
 	$scope.toCurrencyCheck=true;
 	/*
-	调用rateService模块中的rateEngine这个服务，来获取汇率信息，并将获取到的信息赋值给controller中声明的变量。
+	调用rateService模块中的rateEngine和currencyName这两个个服务，来获取汇率信息，并将获取到的信息赋值给controller中声明的变量。
 	 */
 	rateEngine.get({
 		app_id: "6957c070c395430a812077a511c5541a"
