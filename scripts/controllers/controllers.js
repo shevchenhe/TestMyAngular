@@ -60,8 +60,6 @@ function($scope, $filter, rateEngine,currencyName) {
 	recal函数的主要功能就是在输入货币、输出货币、输入金额变的情况下，重新计算结果
 	 */
 	var recal = function() {
-		//$scope.inputCurrencyRate = $scope.ratesObject[$scope.inputCurrency].nowrate;
-		//$scope.outputCurrencyRate = $scope.ratesObject[$scope.outputCurrency].nowrate;
 		$scope.outputMoney = $filter("number")($scope.inputMoney * $scope.outputCurrencyRate / $scope.inputCurrencyRate, 4);
 	};
 	/*
